@@ -92,6 +92,21 @@ function RecipeDetails() {
   console.log(ingredients, measurement);
   return (
     <div>
+      <header>
+        <button
+          onClick={ copyLink }
+          data-testid="share-btn"
+        >
+          <ShareIcon />
+        </button>
+        <button onClick={ favoriteRecipe }>
+          <img
+            data-testid="favorite-btn"
+            src={ favorited ? BlackHeart : WhiteHeart }
+            alt="favorite"
+          />
+        </button>
+      </header>
       <main>
         <section>
           <h3 data-testid="recipe-title">{ details.strMeal || details.strDrink }</h3>
@@ -146,19 +161,6 @@ function RecipeDetails() {
       {
         copied && <h5>Link copied!</h5>
       }
-      <button
-        onClick={ copyLink }
-        data-testid="share-btn"
-      >
-        <ShareIcon />
-      </button>
-      <button onClick={ favoriteRecipe }>
-        <img
-          data-testid="favorite-btn"
-          src={ favorited ? BlackHeart : WhiteHeart }
-          alt="favorite"
-        />
-      </button>
     </div>
   );
 }
