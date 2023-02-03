@@ -53,6 +53,7 @@ function RecipeDetails() {
     }
 
     makeFetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const copyLink = () => {
