@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Context from '../context/context';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function SearchBar() {
   const [searchRadio, setSearchRadio] = useState('');
@@ -55,57 +56,75 @@ export default function SearchBar() {
 
   return (
     <form onSubmit={ handleSubmit }>
-      <input
-        type="text"
-        name="search-input"
-        id="search-input"
-        data-testid="search-input"
-        value={ searchInput }
-        onChange={ ({ target }) => setSearchInput(target.value) }
-        required
-      />
-      <label htmlFor="ingredient-search-radio">
+      <div className="form-group">
         <input
-          name="searchRadio"
-          type="radio"
-          id="ingredient-search-radio"
-          data-testid="ingredient-search-radio"
-          value="ingredient"
-          onChange={ ({ target }) => setSearchRadio(target.value) }
+          type="text"
+          className="form-control"
+          name="search-input"
+          id="search-input"
+          data-testid="search-input"
+          value={ searchInput }
+          onChange={ ({ target }) => setSearchInput(target.value) }
           required
         />
-        Ingredient
-      </label>
-      <label htmlFor="name-search-radio">
-        <input
-          name="searchRadio"
-          type="radio"
-          id="name-search-radio"
-          data-testid="name-search-radio"
-          value="name"
-          onChange={ ({ target }) => setSearchRadio(target.value) }
-          required
-        />
-        Name
-      </label>
-      <label htmlFor="first-letter-search-radio">
-        <input
-          name="searchRadio"
-          type="radio"
-          id="first-letter-search-radio"
-          data-testid="first-letter-search-radio"
-          value="first-letter"
-          onChange={ ({ target }) => setSearchRadio(target.value) }
-          required
-        />
-        First letter
-      </label>
-      <button
-        data-testid="exec-search-btn"
-        type="submit"
-      >
+      </div>
+      <div className="form-group">
+        <div className="form-check form-check-inline">
+          <label
+            className="form-check-label"
+            htmlFor="ingredient-search-radio"
+          >
+            <input
+              className="form-check-input"
+              type="radio"
+              name="searchRadio"
+              id="ingredient-search-radio"
+              data-testid="ingredient-search-radio"
+              value="ingredient"
+              onChange={ ({ target }) => setSearchRadio(target.value) }
+              required
+            />
+            Ingredient
+          </label>
+        </div>
+        <div className="form-check form-check-inline">
+          <label className="form-check-label" htmlFor="name-search-radio">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="searchRadio"
+              id="name-search-radio"
+              data-testid="name-search-radio"
+              value="name"
+              onChange={ ({ target }) => setSearchRadio(target.value) }
+              required
+            />
+            Name
+          </label>
+        </div>
+        <div className="form-check form-check-inline">
+          <label
+            className="form-check-label"
+            htmlFor="first-letter-search-radio"
+          >
+            <input
+              className="form-check-input"
+              type="radio"
+              name="searchRadio"
+              id="first-letter-search-radio"
+              data-testid="first-letter-search-radio"
+              value="first-letter"
+              onChange={ ({ target }) => setSearchRadio(target.value) }
+              required
+            />
+            First letter
+          </label>
+        </div>
+      </div>
+      <button data-testid="exec-search-btn" className="btn btn-primary" type="submit">
         Search
       </button>
     </form>
+
   );
 }
