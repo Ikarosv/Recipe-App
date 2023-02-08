@@ -1,0 +1,16 @@
+:root {
+
+  --bg-red: #e3001a;
+}
+
+.bg-red {
+  background-color: var(--bg-red);
+}
+
+.img-opacity {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
+}
+
+.color-white {
+  color: white;
+}

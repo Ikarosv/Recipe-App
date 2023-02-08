@@ -55,8 +55,11 @@ export default function SearchBar() {
   };
 
   return (
-    <form onSubmit={ handleSubmit }>
-      <div className="form-group">
+    <form
+      className="container d-flex flex-column flex-align-center"
+      onSubmit={ handleSubmit }
+    >
+      <div className="form-group bg-red">
         <input
           type="text"
           className="form-control"
@@ -121,10 +124,13 @@ export default function SearchBar() {
           </label>
         </div>
       </div>
-      <button data-testid="exec-search-btn" className="btn btn-primary" type="submit">
+      <button
+        data-testid="exec-search-btn"
+        className="btn btn-primary my-3"
+        type="submit"
+      >
         Search
       </button>
     </form>
-
   );
 }

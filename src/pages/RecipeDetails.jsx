@@ -5,10 +5,12 @@ import Loading from '../components/Loading';
 import useCreateUrl from '../hooks/useCreateUrl';
 import useFetch from '../hooks/useFetch';
 import { ReactComponent as ShareIcon } from '../images/shareIcon.svg';
+import { ReactComponent as ShortCake } from '../images/shortcake.svg';
 import WhiteHeart from '../images/whiteHeartIcon.svg';
 import BlackHeart from '../images/blackHeartIcon.svg';
 import '../style/RecipeDetails.css';
 import Carousel from '../components/Carousel';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function RecipeDetails() {
   const { params, path, url } = useRouteMatch();
@@ -93,35 +95,51 @@ function RecipeDetails() {
   console.log(ingredients, measurement);
   return (
     <div>
-      <header>
-        <button
-          onClick={ copyLink }
-          data-testid="share-btn"
-        >
-          <ShareIcon />
-        </button>
-        <button onClick={ favoriteRecipe }>
-          <img
-            data-testid="favorite-btn"
-            src={ favorited ? BlackHeart : WhiteHeart }
-            alt="favorite"
-          />
-        </button>
-      </header>
-      <main>
-        <section>
-          <h3 data-testid="recipe-title">{ details.strMeal || details.strDrink }</h3>
-          <p data-testid="recipe-category">
-            { `${details.strCategory} - ${details.strAlcoholic || details.strTags}` }
-          </p>
-
-          <img
-            className="recipe-photo"
-            src={ details.strMealThumb || details.strDrinkThumb }
-            alt={ details.strMeal || details.strDrink }
-            data-testid="recipe-photo"
-          />
+      <header className="container nav justify-content-between position-absolute">
+        <section className="nav-item d-flex align-items-center">
+          <ShortCake width="33" height="33" />
+          <span data-testid="recipe-category">
+            { `${details.strCategory}` }
+            {/* - ${details.strAlcoholic || details.strTags} */}
+          </span>
         </section>
+        <section>
+          <button
+            onClick={ copyLink }
+            data-testid="share-btn"
+            className="nav-item btn btn-link"
+          >
+            <ShareIcon />
+          </button>
+          <button
+            onClick={ favoriteRecipe }
+            className="nav-item btn btn-link"
+          >
+            <img
+              data-testid="favorite-btn"
+              src={ favorited ? BlackHeart : WhiteHeart }
+              alt="favorite"
+            />
+          </button>
+        </section>
+      </header>
+      <section className="d-flex align-items-center justify-content-center">
+        <h3
+          data-testid="recipe-title"
+          className="position-absolute color-white"
+        >
+          { details.strMeal || details.strDrink }
+
+        </h3>
+
+        <img
+          className="recipe-photo img-fluid opacity-75"
+          src={ details.strMealThumb || details.strDrinkThumb }
+          alt={ details.strMeal || details.strDrink }
+          data-testid="recipe-photo"
+        />
+      </section>
+      <main className="container">
         <Carousel recLoading={ recLoading } recData={ recData } />
         <section>
           {
@@ -141,8 +159,9 @@ function RecipeDetails() {
               <iframe
                 data-testid="video"
                 title="video"
-                width="420"
-                height="315"
+                className="img-fluid"
+                width="360"
+                height="205"
                 src={ details.strYoutube.replace('watch?v=', 'embed/') }
                 allowFullScreen
               />
